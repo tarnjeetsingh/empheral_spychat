@@ -244,9 +244,11 @@ def read_chat_history():
             print '[%s] %s %s' % (chat.time.strftime("%d %B %Y"), 'You said:', chat.message)
         else:
             print '[%s] %s said %s' % (chat.time.strftime('%d %B %Y'), friends[read_for].name, chat.message)
+            # Adding special conditons if spy sends special messages such as SOS, Save Me
             if chat.message == 'SOS':
                 print 'Hurry the spy %s is in an emergency' % (friends[read_for].name)
             elif chat.message.upper() == 'SAVE ME':
                 print 'Time to get in action \nThe life of %s is in danger' % (friends[read_for].name)
+
 # calling the function to start the chat application
 start_chat(spy.name, spy.age, spy.rating)
