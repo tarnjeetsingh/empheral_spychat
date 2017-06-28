@@ -1,3 +1,6 @@
+import sys
+from termcolor import colored,cprint
+
 #Importing steganography from libarary
 from steganography.steganography import Steganography
 
@@ -20,8 +23,6 @@ friend_two = Spy('Mata Hari', 'Ms.', 21, 4.39)
 friend_three = Spy('No', 'Dr.', 37, 4.95)
 
 friends = [friend_one, friend_two, friend_three]
-
-
 
 # starting application and printing a hello message
 print'Hello'
@@ -241,14 +242,19 @@ def read_chat_history():
         read_for = select_a_friend()
     for chat in friends[read_for].chats:
         if chat.sent_by_me:
-            print '[%s] %s %s' % (chat.time.strftime("%d %B %Y"), 'You said:', chat.message)
+            cprint(chat.time.strftime('%d %B %Y'), 'blue')
+            cprint('You said:', 'red')
+            print chat.message
         else:
-            print '[%s] %s said %s' % (chat.time.strftime('%d %B %Y'), friends[read_for].name, chat.message)
+            cprint(chat.time.strftime('%d %B %Y'),'blue')
+            cprint(friends[read_for].name+' said:','red')
+            print chat.message
             # Adding special conditons if spy sends special messages such as SOS, Save Me
-            if chat.message == 'SOS':
-                print 'Hurry the spy %s is in an emergency' % (friends[read_for].name)
+            if chat.message.upper() == 'SOS':
+                cprint('Hurry the spy '+friends[read_for].name+' is in an emergency','red',attrs=['bold'])
             elif chat.message.upper() == 'SAVE ME':
-                print 'Time to get in action \nThe life of %s is in danger' % (friends[read_for].name)
+                cprint('Time to get in action \nThe life of '+friends[read_for].name+' is in danger','red',attrs=['bold'])
+
 
 # calling the function to start the chat application
 start_chat(spy.name, spy.age, spy.rating)
