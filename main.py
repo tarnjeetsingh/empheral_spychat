@@ -217,9 +217,11 @@ def read_message():
     sender = select_a_friend()
     while sender == None:
         sender = select_a_friend()
+        ouput_text = None
     try:
-        output_name= raw_input('what is the  name of the file you want to read?')
-        ouput_text= Steganography.decode(output_name)
+
+        output_name = raw_input('what is the  name of the file you want to read?')
+        ouput_text = Steganography.decode(output_name)
         message = ouput_text
         sent_by_me = False
         new_chat = ChatMessage(message,sent_by_me)
@@ -231,7 +233,7 @@ def read_message():
         elif friends[sender].chats[-1].message.upper() == 'SAVE ME':
             print 'Time to get in action \nThe life of %s is in danger' % (friends[sender].name)
     except IOError:
-        print 'Sorry the fie you named cannot be found'
+        print 'sorry no file of such name can be found'
 
 # Function to read the chat history
 def read_chat_history():
